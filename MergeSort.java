@@ -7,7 +7,7 @@ public class MergeSort{
         int[] leftArray = new int[leftSize];  
         int[] rightArray = new int[rightSize];  
     
-        // Copy data to temporary arrays
+      
         for (int i = 0; i < leftSize; i++)  
             leftArray[i] = array[left + i];  
         for (int j = 0; j < rightSize; j++)  
@@ -15,7 +15,7 @@ public class MergeSort{
     
         int leftIndex = 0, rightIndex = 0, mergedIndex = left;
     
-        // Merge the two subarrays
+        
         while (leftIndex < leftSize && rightIndex < rightSize) { 
             if (leftArray[leftIndex] <= rightArray[rightIndex]) { 
                 array[mergedIndex] = leftArray[leftIndex]; 
@@ -27,14 +27,14 @@ public class MergeSort{
             mergedIndex++;  
         }  
     
-        // Copy any remaining elements from leftArray
+       
         while (leftIndex < leftSize) { 
             array[mergedIndex] = leftArray[leftIndex];  
             leftIndex++; 
             mergedIndex++; 
         }  
     
-        // Copy any remaining elements from rightArray
+        
         while (rightIndex < rightSize) { 
             array[mergedIndex] = rightArray[rightIndex]; 
             rightIndex++; 
@@ -47,11 +47,11 @@ public class MergeSort{
         if (left < right) { 
             int middle = left + (right - left) / 2; 
     
-            // Recursively sort the left and right halves
+            
             sort(array, left, middle); 
             sort(array, middle + 1, right); 
     
-            // Merge the sorted halves
+            
             merge(array, left, middle, right);  
         } 
     }
@@ -59,18 +59,16 @@ public class MergeSort{
 
 
     public static void sortCutOff(int[] array, int left, int right, int cutoff) {
-        if (right - left + 1 <= cutoff) {  // Use insertion sort for small subarrays
+        if (right - left + 1 <= cutoff) {  
             InsertionSort.sort(array, left, right);
             return;
         } 
     
         int middle = left + (right - left) / 2;
     
-        // Recursively sort the left and right halves
         sortCutOff(array, left, middle, cutoff);
         sortCutOff(array, middle + 1, right, cutoff);
     
-        // Merge the sorted halves
         merge(array, left, middle, right);
     }
 

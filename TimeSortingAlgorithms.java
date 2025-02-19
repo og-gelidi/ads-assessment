@@ -104,7 +104,7 @@ public class TimeSortingAlgorithms {
             timeTaken = (time2 - time1) / 1_000_000.0;
             timeTotal += timeTaken;
         }
-        average = timeTotal / 10.0; 
+        average = timeTotal / 10.0;
         System.out.println("QuickSort (median of 3): " + average + " milliseconds");
 
         timeTotal = 0.0;
@@ -160,7 +160,7 @@ public class TimeSortingAlgorithms {
 
 
     public static void main(String[] args) {
-        timeToSort("bad.txt");
+        timeToSort("int20k.txt");
     }
 }   
 

@@ -36,6 +36,10 @@ public class TestSortingAlgorithms{
         return copyArray(data);
     }
 
+    public static boolean checkFile(String path) throws FileNotFoundException{
+        return isSorted(readArray(path));
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         int[] test1 = readArray("int10.txt");
         int[] test2 = readArray("int50.txt");

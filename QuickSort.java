@@ -43,33 +43,25 @@ public class QuickSort{
         sortMedian3(a, q+1, r); 
       }
 
-      public static void sort3Way(int arr[], int left, int right) { 
-        if (right <= left) return; 
-        
-        int pivot = arr[right]; 
-        int low = left - 1, high = right, equalLow = left - 1, equalHigh = right, index; 
+      //Dutch flag
+    //@param l is the starting parameter
+    //q is meant to be the right boundary of a partition
+    public static void sort3Way(int a[], int l, int r) {
+        if (r <= l) return;
     
-        for (;;) { 
-            while (arr[++low] < pivot); 
-            while (pivot < arr[--high]) if (high == left) break; 
+        int pivot = a[r]; // Consider using median-of-three for better performance
+        int i = l, lt = l, gt = r;
     
-            if (low >= high) break; 
-            swap(arr, low, high); 
+        while (i <= gt) {
+            if (a[i] < pivot) swap(a, lt++, i++);
+            else if (a[i] > pivot) swap(a, i, gt--);
+            else i++;
+        }
     
-            if (arr[low] == pivot) { equalLow++; swap(arr, equalLow, low); } 
-            if (arr[high] == pivot) { equalHigh--; swap(arr, equalHigh, high); } 
-        } 
-        
-        swap(arr, low, right); 
-        high = low - 1; 
-        low = low + 1; 
-    
-        for (index = left; index <= equalLow; index++, high--) swap(arr, index, high); 
-        for (index = right - 1; index >= equalHigh; index--, low++) swap(arr, index, low); 
-    
-        sort3Way(arr, left, high); 
-        sort3Way(arr, low, right); 
+        sort3Way(a, l, lt - 1);  // Sort elements less than pivot
+        sort3Way(a, gt + 1, r);  // Sort elements greater than pivot
     }
+    
     
 
 
