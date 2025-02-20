@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TimeSortingAlgorithms {
+    public static final long THRESHOLD = 300_000_000_000L;
+    public static long startTime;
 
     public static void timeToSort(String path) {
         int[] originalArr = readArray(path);
@@ -22,6 +24,7 @@ public class TimeSortingAlgorithms {
         arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
+        
             InsertionSort.sort(arr);
             time2 = System.nanoTime();
             timeTaken = (time2 - time1) / 1_000_000.0;
