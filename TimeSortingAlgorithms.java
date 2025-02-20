@@ -6,9 +6,10 @@ import java.util.Scanner;
 public class TimeSortingAlgorithms {
 
     public static void timeToSort(String path) {
-        int[] arr = readArray(path);
+        int[] originalArr = readArray(path);
+        int[] arr;
         int startIndex = 0;
-        int endIndex = arr.length - 1;
+        int endIndex = originalArr.length - 1;
         long time1;
         long time2;
         double timeTaken;
@@ -18,6 +19,7 @@ public class TimeSortingAlgorithms {
         
         System.out.printf("Time taken to sort %s:\n\n\n",path);
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             InsertionSort.sort(arr);
@@ -29,6 +31,7 @@ public class TimeSortingAlgorithms {
         System.out.println("InsertionSort: " + average + " milliseconds");
         
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             SelectionSort.sort(arr);
@@ -40,6 +43,7 @@ public class TimeSortingAlgorithms {
         System.out.println("SelectionSort: " + average + " milliseconds");
 
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             ShellSort.sort(arr);
@@ -51,6 +55,7 @@ public class TimeSortingAlgorithms {
         System.out.println("ShellSort: " + average + " milliseconds");
 
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             MergeSort.sort(arr, startIndex, endIndex);
@@ -63,6 +68,7 @@ public class TimeSortingAlgorithms {
 
         
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             MergeSort.sortCutOff(arr, startIndex, endIndex, 10 );
@@ -75,6 +81,7 @@ public class TimeSortingAlgorithms {
 
 
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             MergeSort.sortBottomUp(arr, startIndex, endIndex);
@@ -86,6 +93,7 @@ public class TimeSortingAlgorithms {
         System.out.println("MergeSort (bottom up): " + average + " milliseconds");
         
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             QuickSort.sort(arr, startIndex, endIndex);
@@ -97,6 +105,7 @@ public class TimeSortingAlgorithms {
         System.out.println("QuickSort: " + average + " milliseconds");
 
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             QuickSort.sortMedian3(arr, startIndex, endIndex);
@@ -108,6 +117,7 @@ public class TimeSortingAlgorithms {
         System.out.println("QuickSort (median of 3): " + average + " milliseconds");
 
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             QuickSort.sort3Way(arr, startIndex, endIndex);
@@ -119,6 +129,7 @@ public class TimeSortingAlgorithms {
         System.out.println("QuickSort (dutch flag): " + average + " milliseconds");
 
         timeTotal = 0.0;
+        arr = originalArr.clone();
         for (int i = 0; i < 10; i++) {
             time1 = System.nanoTime();
             QuickSort.sortCutOff(arr, startIndex, endIndex, 10);

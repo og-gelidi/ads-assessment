@@ -8,22 +8,20 @@ public class QuickSort{
         }
     }
         
-    public static int partition(int[] array, int p, int r){
-        int x = array[r];
+    public static int partition(int[] array, int p, int r) {
+        int x = array[r]; 
         int i = p - 1;
-        for (int j = p ; j<r ; j++) {
-            if (array[j]<= x){
-                i = i + 1;
-                int intermediate = array[i];
-                array[i] = array[j];
-                array[j] = intermediate;
+    
+        for (int j = p; j < r; j++) {
+            if (array[j] <= x) {
+                i++;
+                swap(array, i, j);
             }
-            int intermediate = array[i];
-            array[i] = array[j];
-            array[j] = intermediate;
         }
+        swap(array, i + 1, r);
         return i + 1;
     }
+    
 
     public static void swap(int a[], int b, int c) {
         int saved = a[c];
@@ -43,34 +41,38 @@ public class QuickSort{
         sortMedian3(a, q+1, r); 
       }
 
-      //Dutch flag
-    //@param l is the starting parameter
-    //q is meant to be the right boundary of a partition
-    public static void sort3Way(int a[], int l, int r) {
-        if (r <= l) return;
-    
-        int pivot = a[r]; // Consider using median-of-three for better performance
-        int i = l, lt = l, gt = r;
-    
-        while (i <= gt) {
-            if (a[i] < pivot) swap(a, lt++, i++);
-            else if (a[i] > pivot) swap(a, i, gt--);
-            else i++;
+      public static void sort3Way(int[] arr, int low, int high) {
+    if (low >= high) return; // Base case to stop recursion
+
+    int lt = low, i = low + 1, gt = high;
+    int pivot = arr[low];
+
+    while (i <= gt) {
+        if (arr[i] < pivot) {
+            swap(arr, lt++, i++);
+        } else if (arr[i] > pivot) {
+            swap(arr, i, gt--);
+        } else {
+            i++;
         }
-    
-        sort3Way(a, l, lt - 1);  // Sort elements less than pivot
-        sort3Way(a, gt + 1, r);  // Sort elements greater than pivot
+    }
+
+    // Recursively sort the partitions
+    sort3Way(arr, low, lt - 1);
+    sort3Way(arr, gt + 1, high);
+}
+
+    private static void kSort(int a[], int p, int r, int k) { 
+        if (p >= r) return; 
+        if (r - p + 1 <= k) return;
+        
+        int q = partition(a, p, r);
+        System.out.println("p: " + p + ", q: " + q + ", r: " + r);
+
+        if (q > p) kSort(a, p, q - 1, k); 
+        if (q < r) kSort(a, q + 1, r, k);  
     }
     
-    
-
-
-      private static void kSort(int a[], int p, int r, int k){ 
-        if (r - p <= k) return; 
-        int q = partition(a, p, r); 
-        kSort(a, p, q-1, k); 
-        kSort(a, q+1, r, k); 
-      } 
        public static void sortCutOff(int a[], int p, int r, int k){ 
         kSort(a, p, r, k); 
         InsertionSort.sort(a, p, r); 
